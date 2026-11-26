@@ -1,3 +1,11 @@
+## @solidexpert/ngx-image-viewer
+
+This package is now maintained by [solidexpert-ltd](https://github.com/solidexpert-ltd/ngx-image-viewer).
+
+It is a maintained fork of the archived upstream project [brenoprata10/ng2-image-viewer](https://github.com/brenoprata10/ng2-image-viewer) (last upstream push in 2020). Original author: [Breno Prata](mailto:brenoprata10@gmail.com). The MIT license and the original copyright are unchanged.
+
+Peer dependency: `@angular/core` `^22.0.0`.
+
 ## Welcome to Ng2-Image Viewer
 <section>
     <p>This component uses the <a href="http://ignitersworld.com/lab/imageViewer.html">Image Viewer JS</a> in it's core.</p>
@@ -266,9 +274,10 @@
 To install this library, run:
 
 ```bash
-$ npm install iv-viewer --save
-$ npm install ng2-image-viewer --save
+$ npm install @solidexpert/ngx-image-viewer
 ```
+
+`iv-viewer` is a dependency of this package and is installed with it.
 
 ## Consuming the library
 
@@ -281,7 +290,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { ImageViewerModule } from 'ng2-image-viewer';
+import { ImageViewerModule } from '@solidexpert/ngx-image-viewer';
 
 @NgModule({
   declarations: [
@@ -299,13 +308,7 @@ import { ImageViewerModule } from 'ng2-image-viewer';
 export class AppModule { }
 ```
 
-Now just add the these codes on your angular-cli.json file:
-
-```json
-"styles": [
-    "../node_modules/ng2-image-viewer/imageviewer.scss"
-],
-```
+Viewer styles, including the styles previously imported from `imageviewer.scss`, are bundled with `app-image-viewer`. A copy of that stylesheet is still published at `node_modules/@solidexpert/ngx-image-viewer/imageviewer.scss` if an application wants to include it globally.
 
 Once your library is imported, you can use its components, directives and pipes in your Angular application:
 
@@ -380,3 +383,5 @@ $ npm run lint
 ## License
 
 MIT © [brenoprata10](mailto:brenoprata10@gmail.com)
+
+Maintained by [solidexpert-ltd](https://github.com/solidexpert-ltd/ngx-image-viewer).

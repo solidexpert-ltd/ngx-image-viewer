@@ -1,3 +1,4 @@
+/// <reference path="./iv-viewer.d.ts" />
 import {
     AfterViewInit,
     Component,
@@ -7,7 +8,8 @@ import {
     OnInit,
     Output,
     Renderer2,
-    SimpleChanges
+    SimpleChanges,
+    ViewEncapsulation
 } from '@angular/core';
 
 import ImageViewer from 'iv-viewer';
@@ -20,9 +22,13 @@ import {FullScreenViewer} from 'iv-viewer';
 
     selector: 'app-image-viewer',
 
+    standalone: false,
+
+    encapsulation: ViewEncapsulation.None,
+
     templateUrl: './image-viewer.component.html',
 
-    styleUrls: ['./image-viewer.component.scss']
+    styleUrls: ['./image-viewer.component.scss', './imageviewer.scss']
 })
 export class ImageViewerComponent implements OnChanges, OnInit, AfterViewInit {
 
@@ -420,8 +426,11 @@ export class ImageViewerComponent implements OnChanges, OnInit, AfterViewInit {
 
         const newBlob = new Blob([arrBuffer], { type: 'application/pdf' });
 
-        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-            window.navigator.msSaveOrOpenBlob(newBlob);
+        const navigatorWithMsSave = window.navigator as Navigator & {
+            msSaveOrOpenBlob?: (blob: Blob) => boolean;
+        };
+        if (navigatorWithMsSave.msSaveOrOpenBlob) {
+            navigatorWithMsSave.msSaveOrOpenBlob(newBlob);
             return;
         }
 
